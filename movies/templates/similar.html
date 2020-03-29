@@ -22,10 +22,10 @@
 	</script>
 {% endblock %}
 
-{% block title %}Search Results{% endblock %}
+{% block title %}Similar Movies{% endblock %}
 
 {% block content %}
-	<h1>Search Results</h1>
+	<h1>Movies Similar to <a href="/movie/{{movie_id}}">{{ title }}</a></h1>
 	<table class="display" id="search-results-table">
 		<thead>
 			<tr>

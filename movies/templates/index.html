@@ -1,18 +1,58 @@
 {% extends 'base.html' %}
 
+{% block head %}
+	{{ super() }}
+	<script>
+		$(function () {
+			var table = $('#popular-table').DataTable( {
+				'oLanguage': {
+					'sSearch': 'Filter:'
+				},
+				'paging': false
+			});
+			table.columns().every(function () {
+				var that = this;
+				$('input', this.footer()).on('keyup change clear', function() {
+					if (that.search() !== this.value) {
+						that.search( this.value ).draw();
+					}
+				});
+			});
+		});
+	</script>
+{% endblock %}
+
 {% block content %}
-	<table id="popular-table">
+	<h1>Popular Titles</h1>
+	<table class="display" id="popular-table">
 		<thead>
 			<tr>
-				<th>Popular Titles</th>
+				<th>Rank</th>
+				<th>Title</th>
+				<th>Overview</th>
+				<th>Genres</th>
+				<th>Release Date</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for movie in popular_movies %}
 				<tr>
+					<td>{{loop.index}}</td>
 					<td><a href="/movie/{{movie.id}}">{{movie.title}}</a></td>
+					<td>{{movie.overview}}</td>
+					<td>{{movie.genres}}</td>
+					<td>{{movie.release_date}}</td>
 				</tr>
 			{% endfor %}
 		</tbody>
+		<tfoot>
+			<tr>
+				<th></th>
+				<th><input type="text" placeholder="Search Titles"></th>
+				<th><input type="text" placeholder="Search Overviews"></th>
+				<th><input type="text" placeholder="Search Genres"></th>
+				<th></th>
+			</tr>
+		</tfoot>
 	</table>
 {% endblock %}

@@ -1,10 +1,33 @@
 {% extends 'base.html' %}
 
+{% block head %}
+	{{ super() }}
+	<script>
+		$(function () {
+			$('#movie-info-table').DataTable( {
+				'bInfo': false,
+				'oLanguage': {
+					'sSearch': 'Filter:'
+				},
+				'ordering': false,
+				'paging': false
+			});
+		});
+	</script>
+{% endblock %}
+
 {% block title %}{{movie.get("title")}}{% endblock %}
 
 {% block content %}
 	<h1>{{movie.get("title")}}</h1>
-	<table id="movie-info-table">
+	<p><a href="/movie/{{movie.get('id')}}/similar">See similar movies >>></a></p>
+	<table class="display" id="movie-info-table">
+		<thead>
+			<tr>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
 		<tbody>
 			{% for key,value in movie.items() %}
 				<tr>

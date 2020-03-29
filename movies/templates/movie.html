@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{movie.get("title")}}{% endblock %}
+
+{% block content %}
+	<h1>{{movie.get("title")}}</h1>
+	<table id="movie-info-table">
+		<tbody>
+			{% for key,value in movie.items() %}
+				<tr>
+					<td>{{key}}</td>
+					<td>{{value}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

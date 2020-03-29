@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<table id="popular-table">
+		<thead>
+			<tr>
+				<th>Popular Titles</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for movie in popular_movies %}
+				<tr>
+					<td><a href="/movie/{{movie.id}}">{{movie.title}}</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+	<table id="search-results-table">
+		<thead>
+			<tr>
+				<th>Search Results</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for movie in movies %}
+				<tr>
+					<td><a href="/movie/{{movie.id}}">{{movie.title}}</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
